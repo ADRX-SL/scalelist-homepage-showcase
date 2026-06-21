@@ -60,9 +60,15 @@ export function TabClaude() {
 
   const enriched = step >= 5;
   const visibleRows = step >= 2 ? 8 : 0;
+  const chatRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [step]);
 
   return (
-    <div className="h-[560px] max-h-[560px] grid lg:grid-cols-2 gap-0 overflow-hidden">
+    <div className="h-full grid lg:grid-cols-2 gap-0 overflow-hidden">
       {/* LEFT — Claude.ai light chat */}
       <div className="bg-[#faf9f5] p-6 flex flex-col h-full overflow-hidden">
         <div className="flex items-center gap-2 pb-4 border-b border-[#e8e4d8]">
