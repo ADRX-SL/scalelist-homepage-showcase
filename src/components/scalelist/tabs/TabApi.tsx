@@ -184,8 +184,8 @@ export function TabApi() {
   const Icon = current.icon;
 
   return (
-    <div>
-      <div className="min-h-[560px] grid lg:grid-cols-[300px_1fr] gap-0">
+    <div className="h-full flex flex-col overflow-hidden">
+      <div className="flex-1 grid lg:grid-cols-[300px_1fr] gap-0 overflow-hidden">
         {/* LEFT — endpoint picker with plain-English labels */}
         <div className="bg-gray-950 p-6 text-white">
           <div className="flex items-center gap-2 text-xs">
