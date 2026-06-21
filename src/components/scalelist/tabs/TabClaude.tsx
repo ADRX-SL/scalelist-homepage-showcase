@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Plus, Mic, AudioLines } from "lucide-react";
+import { ClaudeLogo } from "../ClaudeLogo";
 
 const PHASE1_ROWS = [
   ["Sarah", "Chen", "Acme Cloud", "acmecloud.com", "CEO", "Software", "120"],
@@ -23,10 +24,13 @@ const ENRICHED = [
   { email: "jonah@orbitsync.com", phone: "+1 (628) 555-0133" },
 ];
 
-function useTypewriter(text: string, active: boolean, speed = 15) {
+function useTypewriter(text: string, active: boolean, speed = 12) {
   const [out, setOut] = useState("");
   useEffect(() => {
-    if (!active) { setOut(text); return; }
+    if (!active) {
+      setOut(text);
+      return;
+    }
     setOut("");
     let i = 0;
     const id = setInterval(() => {
@@ -41,86 +45,129 @@ function useTypewriter(text: string, active: boolean, speed = 15) {
 
 export function TabClaude() {
   const [step, setStep] = useState(0);
-  // Steps: 0 user1, 1 thinking1, 2 ai1, 3 user2, 4 thinking2, 5 ai2
   useEffect(() => {
-    const timings = [1000, 1200, 5800, 2000, 1200, 4800];
+    const timings = [1200, 1200, 5800, 2200, 1200, 5200];
     const id = setTimeout(() => setStep((s) => (s + 1) % 6), timings[step]);
     return () => clearTimeout(id);
   }, [step]);
 
-  const ai1Text = "I found 31,000 CEOs matching your criteria. Here's a preview of your list:";
-  const ai2Text = "Done. I enriched 8,500 CEOs in California for you:";
+  const ai1Text =
+    "Found 31,000 CEOs at US technology companies with 11–200 employees. Here's a preview — would you like me to enrich them with verified emails and mobile numbers?";
+  const ai2Text =
+    "Done. I enriched the 8,500 CEOs based in California. All emails are verified deliverable, mobiles are direct dials.";
   const ai1 = useTypewriter(ai1Text, step === 2);
   const ai2 = useTypewriter(ai2Text, step === 5);
 
   const enriched = step >= 5;
-  const visibleRows = step >= 5 ? 8 : step >= 2 ? 8 : 0;
+  const visibleRows = step >= 2 ? 8 : 0;
 
   return (
-    <div className="min-h-[520px] grid lg:grid-cols-2 gap-0">
-      {/* LEFT chat */}
-      <div className="bg-[#0a0a0a] p-6 flex flex-col">
-        <div className="flex items-center gap-2 pb-4 border-b border-white/10">
-          <span className="text-gray-400 text-xs">Scalelist MCP + Claude</span>
-          <span className="ml-2 w-2 h-2 rounded-full bg-green-400" />
-          <span className="text-green-400 text-xs">Connected</span>
+    <div className="min-h-[560px] grid lg:grid-cols-2 gap-0">
+      {/* LEFT — Claude.ai light chat */}
+      <div className="bg-[#faf9f5] p-6 flex flex-col">
+        <div className="flex items-center gap-2 pb-4 border-b border-[#e8e4d8]">
+          <ClaudeLogo className="w-5 h-5" />
+          <span className="text-[#1f1f1d] text-sm font-semibold">Claude</span>
+          <span className="text-[#8a857a] text-xs">· Scalelist MCP</span>
+          <span className="ml-auto inline-flex items-center gap-1.5 text-[11px] text-green-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500" /> Connected
+          </span>
         </div>
 
-        <div className="flex-1 flex flex-col gap-4 py-5 overflow-hidden">
-          <Message role="user" avatar="A" avatarBg="bg-primary" show={step >= 0}>
-            Find me the CEOs of technology companies in the United States with 11 to 200 employees.
-          </Message>
+        <div className="flex-1 flex flex-col gap-5 py-5 overflow-hidden">
+          {step >= 0 && (
+            <div className="flex justify-end fade-up">
+              <span className="bg-[#efe9d9] text-[#1f1f1d] text-sm rounded-2xl px-4 py-2 max-w-[85%]">
+                <span className="text-[#c2410c] font-medium">/scalelist</span>{" "}
+                find CEOs of US technology companies with 11–200 employees
+              </span>
+            </div>
+          )}
 
           {step === 1 && <ThinkingDots />}
 
           {step >= 2 && (
-            <Message role="ai" avatar="S" avatarBg="bg-white text-black" show>
-              {step === 2 ? ai1 : ai1Text}
+            <div className="fade-up">
+              <div className="text-[11px] text-[#8a857a] mb-1.5 flex items-center gap-1.5">
+                <span className="inline-block w-1 h-1 rounded-full bg-[#c2410c]" />
+                Searched Scalelist database
+              </div>
+              <p className="text-[#1f1f1d] text-[15px] leading-relaxed">
+                {step === 2 ? ai1 : ai1Text}
+              </p>
               {step >= 2 && (
-                <div className="mt-3 rounded-lg overflow-hidden border border-white/10 text-[10px]">
-                  <div className="grid grid-cols-3 bg-white/5 px-2 py-1 text-white/60 uppercase tracking-wider">
-                    <span>Name</span><span>Company</span><span>Title</span>
+                <div className="mt-3 rounded-xl overflow-hidden border border-[#e8e4d8] text-xs bg-white">
+                  <div className="grid grid-cols-3 bg-[#f5f1e6] px-3 py-1.5 text-[10px] uppercase tracking-wider text-[#8a857a] font-medium">
+                    <span>Name</span>
+                    <span>Company</span>
+                    <span>Title</span>
                   </div>
                   {PHASE1_ROWS.slice(0, 3).map((r, i) => (
-                    <div key={i} className="grid grid-cols-3 px-2 py-1 border-t border-white/5 text-white/80">
-                      <span>{r[0]} {r[1]}</span><span>{r[2]}</span><span>{r[4]}</span>
+                    <div key={i} className="grid grid-cols-3 px-3 py-1.5 border-t border-[#f0ecdf] text-[#1f1f1d]">
+                      <span>{r[0]} {r[1]}</span>
+                      <span>{r[2]}</span>
+                      <span>{r[4]}</span>
                     </div>
                   ))}
                 </div>
               )}
-            </Message>
+            </div>
           )}
 
           {step >= 3 && (
-            <Message role="user" avatar="A" avatarBg="bg-primary" show>
-              Thanks. Now enrich only the CEOs in California with emails and mobile numbers.
-            </Message>
+            <div className="flex justify-end fade-up">
+              <span className="bg-[#efe9d9] text-[#1f1f1d] text-sm rounded-2xl px-4 py-2 max-w-[85%]">
+                Yes — enrich the CEOs in California with emails and mobile numbers
+              </span>
+            </div>
           )}
 
           {step === 4 && <ThinkingDots />}
 
           {step >= 5 && (
-            <Message role="ai" avatar="S" avatarBg="bg-white text-black" show>
-              {step === 5 ? ai2 : ai2Text}
-              <div className="mt-3 space-y-1.5 text-xs">
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-green-400" /> 7,820 emails found (92%)</div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-green-400" /> 7,395 mobile numbers found (87%)</div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-green-400" /> Your list is ready to export or push to your CRM.</div>
+            <div className="fade-up">
+              <div className="text-[11px] text-[#8a857a] mb-1.5 flex items-center gap-1.5">
+                <span className="inline-block w-1 h-1 rounded-full bg-[#c2410c]" />
+                Enriched 8,500 contacts
               </div>
-            </Message>
+              <p className="text-[#1f1f1d] text-[15px] leading-relaxed">
+                {step === 5 ? ai2 : ai2Text}
+              </p>
+              <div className="mt-3 space-y-1.5 text-sm text-[#1f1f1d]">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" /> 7,820 emails found <span className="text-[#8a857a]">(92%)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" /> 7,395 mobile numbers found <span className="text-[#8a857a]">(87%)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" /> Ready to export or push to your CRM
+                </div>
+              </div>
+            </div>
           )}
         </div>
 
-        <div className="mt-auto bg-white/5 rounded-xl border border-white/10 px-4 py-3 flex items-center text-sm text-gray-500">
-          <span>Ask Claude to find your next leads...</span>
-          <span className="ml-1 w-1.5 h-4 bg-white/70 cursor-blink" />
+        <div className="mt-auto bg-white rounded-2xl border border-[#e8e4d8] px-4 py-3 shadow-sm">
+          <div className="flex items-center text-sm text-[#8a857a]">
+            <span>Write a message…</span>
+            <span className="ml-1 w-1.5 h-4 bg-[#1f1f1d]/40 cursor-blink" />
+          </div>
+          <div className="flex items-center justify-between mt-2 text-[11px] text-[#8a857a]">
+            <Plus className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-3">
+              <span>Sonnet 4.5 <span className="opacity-60">▾</span></span>
+              <Mic className="w-3.5 h-3.5" />
+              <AudioLines className="w-3.5 h-3.5" />
+            </div>
+          </div>
         </div>
       </div>
 
       {/* RIGHT table */}
       <div className="bg-white p-4 sm:p-6 border-l border-border">
         <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
-          <h3 className="text-sm font-semibold">CEO List — USA Technology (11-200 employees)</h3>
+          <h3 className="text-sm font-semibold">CEO List — USA Technology (11–200 employees)</h3>
           <span className="bg-green-50 text-green-700 border border-green-100 rounded-full px-3 py-1 text-xs font-medium">31,000 leads</span>
         </div>
 
@@ -179,25 +226,11 @@ export function TabClaude() {
   );
 }
 
-function Message({ role, avatar, avatarBg, show, children }: { role: "user" | "ai"; avatar: string; avatarBg: string; show: boolean; children: React.ReactNode }) {
-  if (!show) return null;
-  return (
-    <div className="flex items-start gap-3 fade-up">
-      <div className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${avatarBg} text-white`}>
-        {avatar}
-      </div>
-      <div className={`max-w-[85%] rounded-2xl rounded-tl-sm p-3.5 text-sm text-white ${role === "user" ? "bg-gray-800" : "bg-blue-600"}`}>
-        {children}
-      </div>
-    </div>
-  );
-}
-
 function ThinkingDots() {
   return (
-    <div className="flex items-center gap-1.5 pl-10">
+    <div className="flex items-center gap-1.5">
       {[0, 150, 300].map((d) => (
-        <span key={d} className="w-2 h-2 rounded-full bg-gray-500 animate-bounce" style={{ animationDelay: `${d}ms` }} />
+        <span key={d} className="w-1.5 h-1.5 rounded-full bg-[#c2410c]/60 animate-bounce" style={{ animationDelay: `${d}ms` }} />
       ))}
     </div>
   );
