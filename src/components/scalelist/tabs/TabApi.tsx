@@ -263,7 +263,7 @@ export function TabApi() {
             />
           </div>
 
-          <div className="p-5 flex-1 relative">
+          <div className="p-5 flex-1 overflow-y-auto min-h-0 relative">
             <div className="flex items-center justify-between mb-3">
               <span className="text-gray-400 text-[11px] uppercase tracking-wider">Response</span>
               <span className="bg-green-900 text-green-400 text-[11px] rounded px-2 py-0.5">200 OK</span>
