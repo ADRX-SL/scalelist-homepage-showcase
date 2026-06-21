@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { CheckCircle2, Globe, Zap, Plus } from "lucide-react";
 
 const CONTACTS = [
-  { name: "Elizabeth Kelly", role: "Technical Director", email: "elizabeth@anthropic.com", status: "risky" },
-  { name: "Ryan Libster", role: "Sales Director", email: "libster@anthropic.com", status: "risky" },
-  { name: "Cat De Jong", role: "Dir. Applied AI", email: "cat@anthropic.com", status: "risky" },
+  { name: "Elizabeth Kelly", role: "Technical Director", email: "elizabeth@anthropic.com", status: "valid" },
+  { name: "Ryan Libster", role: "Sales Director", email: "libster@anthropic.com", status: "valid" },
+  { name: "Cat De Jong", role: "Dir. Applied AI", email: "cat@anthropic.com", status: "valid" },
   { name: "Mike Krieger", role: "Chief Product Officer", email: "mkrieger@anthropic.com", status: "valid" },
   { name: "Corry Wang", role: "Head of Computing", email: "corry@anthropic.com", status: "valid" },
-  { name: "Sydney M.", role: "Growth", email: "sydney@anthropic.com", status: "risky" },
+  { name: "Sydney M.", role: "Growth", email: "sydney@anthropic.com", status: "valid" },
 ];
 
 export function TabExtension() {
