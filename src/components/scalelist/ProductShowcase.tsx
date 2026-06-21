@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { Code2, Upload, Globe } from "lucide-react";
+import { Code2 } from "lucide-react";
 import { TabClaude } from "./tabs/TabClaude";
 import { TabApi } from "./tabs/TabApi";
 import { TabCsv } from "./tabs/TabCsv";
 import { TabExtension } from "./tabs/TabExtension";
 import { ClaudeLogo } from "./ClaudeLogo";
+import { ChromeLogo } from "./ChromeLogo";
+import { UploadLogo } from "./UploadLogo";
 
 const TABS = [
-  { id: "claude", label: "Find with Claude", icon: ClaudeLogo },
-  { id: "api", label: "Enrich via API", icon: Code2 },
-  { id: "csv", label: "CSV & CRM Upload", icon: Upload },
-  { id: "ext", label: "Chrome Extension", icon: Globe },
+  { id: "claude", label: "Find & Enrich leads", icon: ClaudeLogo },
+  { id: "ext", label: "Find & Enrich leads", icon: ChromeLogo },
+  { id: "csv", label: "CSV & CRM enrichment", icon: UploadLogo },
+  { id: "api", label: "Enrich leads via API", icon: Code2 },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
