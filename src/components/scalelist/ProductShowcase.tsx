@@ -43,7 +43,7 @@ export function ProductShowcase() {
         </div>
       </div>
 
-      <div key={active} className="fade-up">
+      <div key={active} className="fade-up h-[580px] overflow-hidden">
         {active === "claude" && <TabClaude />}
         {active === "api" && <TabApi />}
         {active === "csv" && <TabCsv />}

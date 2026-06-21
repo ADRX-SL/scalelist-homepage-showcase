@@ -184,8 +184,8 @@ export function TabApi() {
   const Icon = current.icon;
 
   return (
-    <div>
-      <div className="min-h-[560px] grid lg:grid-cols-[300px_1fr] gap-0">
+    <div className="h-full flex flex-col overflow-hidden">
+      <div className="flex-1 grid lg:grid-cols-[300px_1fr] gap-0 overflow-hidden">
         {/* LEFT — endpoint picker with plain-English labels */}
         <div className="bg-gray-950 p-6 text-white">
           <div className="flex items-center gap-2 text-xs">
@@ -263,7 +263,7 @@ export function TabApi() {
             />
           </div>
 
-          <div className="p-5 flex-1 relative">
+          <div className="p-5 flex-1 overflow-y-auto min-h-0 relative">
             <div className="flex items-center justify-between mb-3">
               <span className="text-gray-400 text-[11px] uppercase tracking-wider">Response</span>
               <span className="bg-green-900 text-green-400 text-[11px] rounded px-2 py-0.5">200 OK</span>
@@ -276,7 +276,7 @@ export function TabApi() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4 p-6 bg-gray-50 border-t border-border">
+      <div className="grid md:grid-cols-3 gap-4 p-4 bg-gray-50 border-t border-border shrink-0">
         {[
           { t: "Find emails", d: "Full name + company domain or name → verified work email. 1 credit per match." },
           { t: "Find mobile numbers", d: "LinkedIn URL, name, email, or company → direct mobile. 20 credits per match." },
