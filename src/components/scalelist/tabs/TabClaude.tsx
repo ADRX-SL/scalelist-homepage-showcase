@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, Plus, Mic, AudioLines } from "lucide-react";
 import { ClaudeLogo } from "../ClaudeLogo";
 
