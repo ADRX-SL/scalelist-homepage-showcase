@@ -19,7 +19,7 @@ export function TabExtension() {
   }, [step]);
 
   return (
-    <div className="min-h-[520px] p-6">
+    <div className="h-full overflow-y-auto p-6">
       <div className="flex justify-center mb-4">
         <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary bg-primary/10 border border-primary/30 rounded-full px-3 py-1">
           Works Everywhere Online
