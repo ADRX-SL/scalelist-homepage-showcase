@@ -234,7 +234,7 @@ export function TabApi() {
         </div>
 
         {/* RIGHT */}
-        <div className="bg-gray-900 font-mono text-xs flex flex-col">
+        <div className="bg-gray-900 font-mono text-xs overflow-y-auto">
           {/* Plain-English explainer */}
           <div className="bg-gradient-to-br from-blue-950/60 to-gray-900 border-b border-gray-800 p-5 font-sans">
             <div className="flex items-center gap-2 mb-3">
@@ -263,7 +263,7 @@ export function TabApi() {
             />
           </div>
 
-          <div className="p-5 flex-1 overflow-y-auto min-h-0 relative">
+          <div className="p-5 relative">
             <div className="flex items-center justify-between mb-3">
               <span className="text-gray-400 text-[11px] uppercase tracking-wider">Response</span>
               <span className="bg-green-900 text-green-400 text-[11px] rounded px-2 py-0.5">200 OK</span>
