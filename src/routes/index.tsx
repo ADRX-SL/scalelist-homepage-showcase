@@ -1,29 +1,42 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { NavBar } from "@/components/scalelist/NavBar";
+import { HeroSection } from "@/components/scalelist/HeroSection";
+import { LogoBar } from "@/components/scalelist/LogoBar";
+import { Testimonial } from "@/components/scalelist/Testimonial";
+import { FeatureRows } from "@/components/scalelist/FeatureRows";
+import { AccuracyBand } from "@/components/scalelist/AccuracyBand";
+import { DataRefresh } from "@/components/scalelist/DataRefresh";
+import { UseCases } from "@/components/scalelist/UseCases";
+import { BottomCTA } from "@/components/scalelist/BottomCTA";
+import { Footer } from "@/components/scalelist/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Scalelist — Find any lead's email & phone, anywhere" },
+      { name: "description", content: "Find 80%+ of your leads' verified emails and mobile numbers, anywhere, worldwide, in one click. Stop losing deals because you couldn't reach them." },
+      { property: "og:title", content: "Scalelist — Find any lead's email & phone, anywhere" },
+      { property: "og:description", content: "Find 80%+ of your leads' verified emails and mobile numbers, anywhere, worldwide, in one click." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background text-foreground">
+      <NavBar />
+      <main>
+        <HeroSection />
+        <LogoBar />
+        <Testimonial />
+        <FeatureRows />
+        <AccuracyBand />
+        <DataRefresh />
+        <UseCases />
+        <BottomCTA />
+      </main>
+      <Footer />
     </div>
   );
 }
