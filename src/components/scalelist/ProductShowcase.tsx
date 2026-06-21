@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Bot, Code2, Upload, Globe } from "lucide-react";
+import { Code2, Upload, Globe } from "lucide-react";
 import { TabClaude } from "./tabs/TabClaude";
 import { TabApi } from "./tabs/TabApi";
 import { TabCsv } from "./tabs/TabCsv";
 import { TabExtension } from "./tabs/TabExtension";
+import { ClaudeLogo } from "./ClaudeLogo";
 
 const TABS = [
-  { id: "claude", label: "Find with Claude", icon: Bot },
+  { id: "claude", label: "Find with Claude", icon: ClaudeLogo },
   { id: "api", label: "Enrich via API", icon: Code2 },
   { id: "csv", label: "CSV & CRM Upload", icon: Upload },
   { id: "ext", label: "Chrome Extension", icon: Globe },
@@ -20,7 +21,7 @@ export function ProductShowcase() {
   return (
     <div className="max-w-6xl mx-auto rounded-[2rem] border border-border bg-white shadow-xl overflow-hidden text-left">
       <div className="bg-gray-50 border-b border-border px-4 sm:px-6 pt-4">
-        <div className="flex gap-1 sm:gap-2 overflow-x-auto pb-0 no-scrollbar">
+        <div className="flex justify-center gap-1 sm:gap-2 overflow-x-auto pb-0 no-scrollbar">
           {TABS.map((t) => {
             const Icon = t.icon;
             const isActive = active === t.id;
