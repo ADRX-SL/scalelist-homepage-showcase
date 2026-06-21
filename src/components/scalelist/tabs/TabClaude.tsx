@@ -80,7 +80,7 @@ export function TabClaude() {
           </span>
         </div>
 
-        <div className="flex-1 flex flex-col gap-5 py-5 overflow-y-auto overflow-x-hidden min-h-0">
+        <div ref={chatRef} className="flex-1 flex flex-col gap-5 py-5 overflow-y-auto overflow-x-hidden min-h-0">
           {step >= 0 && (
             <div className="flex justify-end fade-up">
               <span className="bg-[#efe9d9] text-[#1f1f1d] text-sm rounded-2xl px-4 py-2 max-w-[85%]">
