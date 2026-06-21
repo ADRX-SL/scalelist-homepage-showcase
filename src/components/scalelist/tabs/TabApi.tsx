@@ -187,7 +187,7 @@ export function TabApi() {
     <div className="h-full flex flex-col overflow-hidden">
       <div className="flex-1 grid lg:grid-cols-[300px_1fr] gap-0 overflow-hidden">
         {/* LEFT — endpoint picker with plain-English labels */}
-        <div className="bg-gray-950 p-6 text-white">
+        <div className="bg-gray-950 p-6 text-white overflow-y-auto">
           <div className="flex items-center gap-2 text-xs">
             <span className="font-mono text-gray-400">Scalelist REST API · v2</span>
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 ml-auto" />
