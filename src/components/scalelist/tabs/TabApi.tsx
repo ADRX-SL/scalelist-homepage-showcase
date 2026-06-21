@@ -276,7 +276,7 @@ export function TabApi() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-4 p-6 bg-gray-50 border-t border-border">
+      <div className="grid md:grid-cols-3 gap-4 p-4 bg-gray-50 border-t border-border shrink-0">
         {[
           { t: "Find emails", d: "Full name + company domain or name → verified work email. 1 credit per match." },
           { t: "Find mobile numbers", d: "LinkedIn URL, name, email, or company → direct mobile. 20 credits per match." },
