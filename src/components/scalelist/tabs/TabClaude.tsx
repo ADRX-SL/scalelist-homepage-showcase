@@ -62,9 +62,9 @@ export function TabClaude() {
   const visibleRows = step >= 2 ? 8 : 0;
 
   return (
-    <div className="min-h-[560px] grid lg:grid-cols-2 gap-0">
+    <div className="h-[560px] max-h-[560px] grid lg:grid-cols-2 gap-0 overflow-hidden">
       {/* LEFT — Claude.ai light chat */}
-      <div className="bg-[#faf9f5] p-6 flex flex-col">
+      <div className="bg-[#faf9f5] p-6 flex flex-col h-full overflow-hidden">
         <div className="flex items-center gap-2 pb-4 border-b border-[#e8e4d8]">
           <ClaudeLogo className="w-5 h-5" />
           <span className="text-[#1f1f1d] text-sm font-semibold">Claude</span>
@@ -74,7 +74,7 @@ export function TabClaude() {
           </span>
         </div>
 
-        <div className="flex-1 flex flex-col gap-5 py-5 overflow-hidden">
+        <div className="flex-1 flex flex-col gap-5 py-5 overflow-y-auto overflow-x-hidden min-h-0">
           {step >= 0 && (
             <div className="flex justify-end fade-up">
               <span className="bg-[#efe9d9] text-[#1f1f1d] text-sm rounded-2xl px-4 py-2 max-w-[85%]">
@@ -165,59 +165,61 @@ export function TabClaude() {
       </div>
 
       {/* RIGHT table */}
-      <div className="bg-white p-4 sm:p-6 border-l border-border">
+      <div className="bg-white p-4 sm:p-6 border-l border-border h-full flex flex-col overflow-hidden">
         <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
           <h3 className="text-sm font-semibold">CEO List — USA Technology (11–200 employees)</h3>
           <span className="bg-green-50 text-green-700 border border-green-100 rounded-full px-3 py-1 text-xs font-medium">31,000 leads</span>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-border">
-          <table className="w-full text-sm">
-            <thead className="bg-gray-50">
-              <tr className="text-left">
-                {(enriched
-                  ? ["First", "Last", "Company", "Email", "Phone", "Status"]
-                  : ["First", "Last", "Company", "URL", "Title", "Industry", "Size"]
-                ).map((h) => (
-                  <th key={h} className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider px-3 py-2 whitespace-nowrap">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {PHASE1_ROWS.slice(0, visibleRows).map((r, i) => (
-                <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50/40"}>
-                  <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">{r[0]}</td>
-                  <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">{r[1]}</td>
-                  <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">{r[2]}</td>
-                  {enriched ? (
-                    <>
-                      <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-foreground/80">
-                        <span className="inline-block animate-in fade-in" style={{ animationDelay: `${i * 80}ms` }}>{ENRICHED[i].email}</span>
-                      </td>
-                      <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-foreground/80">
-                        <span className="inline-block animate-in fade-in" style={{ animationDelay: `${i * 80 + 40}ms` }}>{ENRICHED[i].phone}</span>
-                      </td>
-                      <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">
-                        <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 border border-green-100 rounded-full px-2 py-0.5 text-[10px] font-medium">
-                          <CheckCircle2 className="w-3 h-3" /> Verified
-                        </span>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-muted-foreground text-xs">{r[3]}</td>
-                      <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">{r[4]}</td>
-                      <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-muted-foreground text-xs">{r[5]}</td>
-                      <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-muted-foreground text-xs">{r[6]}</td>
-                    </>
-                  )}
+        <div className="flex-1 overflow-y-auto min-h-0">
+          <div className="overflow-x-auto rounded-xl border border-border">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50">
+                <tr className="text-left">
+                  {(enriched
+                    ? ["First", "Last", "Company", "Email", "Phone", "Status"]
+                    : ["First", "Last", "Company", "URL", "Title", "Industry", "Size"]
+                  ).map((h) => (
+                    <th key={h} className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider px-3 py-2 whitespace-nowrap">{h}</th>
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {PHASE1_ROWS.slice(0, visibleRows).map((r, i) => (
+                  <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50/40"}>
+                    <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">{r[0]}</td>
+                    <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">{r[1]}</td>
+                    <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">{r[2]}</td>
+                    {enriched ? (
+                      <>
+                        <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-foreground/80">
+                          <span className="inline-block animate-in fade-in" style={{ animationDelay: `${i * 80}ms` }}>{ENRICHED[i].email}</span>
+                        </td>
+                        <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-foreground/80">
+                          <span className="inline-block animate-in fade-in" style={{ animationDelay: `${i * 80 + 40}ms` }}>{ENRICHED[i].phone}</span>
+                        </td>
+                        <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">
+                          <span className="inline-flex items-center gap-1 bg-green-50 text-green-700 border border-green-100 rounded-full px-2 py-0.5 text-[10px] font-medium">
+                            <CheckCircle2 className="w-3 h-3" /> Verified
+                          </span>
+                        </td>
+                      </>
+                    ) : (
+                      <>
+                        <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-muted-foreground text-xs">{r[3]}</td>
+                        <td className="px-3 py-2.5 border-b border-border whitespace-nowrap">{r[4]}</td>
+                        <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-muted-foreground text-xs">{r[5]}</td>
+                        <td className="px-3 py-2.5 border-b border-border whitespace-nowrap text-muted-foreground text-xs">{r[6]}</td>
+                      </>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
-        <div className="mt-4 flex gap-2 flex-wrap">
+        <div className="mt-4 flex gap-2 flex-wrap shrink-0">
           <span className="bg-green-50 text-green-700 border border-green-100 rounded-full px-3 py-1 text-xs font-medium">92% email coverage</span>
           <span className="bg-blue-50 text-blue-700 border border-blue-100 rounded-full px-3 py-1 text-xs font-medium">87% mobile coverage</span>
         </div>
