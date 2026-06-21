@@ -62,7 +62,7 @@ export function TabClaude() {
   const visibleRows = step >= 2 ? 8 : 0;
 
   return (
-    <div className="min-h-[560px] grid lg:grid-cols-2 gap-0">
+    <div className="h-[560px] max-h-[560px] grid lg:grid-cols-2 gap-0 overflow-hidden">
       {/* LEFT — Claude.ai light chat */}
       <div className="bg-[#faf9f5] p-6 flex flex-col">
         <div className="flex items-center gap-2 pb-4 border-b border-[#e8e4d8]">
