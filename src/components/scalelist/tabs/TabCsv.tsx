@@ -43,38 +43,41 @@ function SingleLead() {
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [phase === "form"]);
 
+  const showResult = phase === "result";
   return (
-    <div className="max-w-lg mx-auto bg-white border border-border rounded-2xl shadow-sm p-8">
-      <div className="flex gap-4 mb-4">
-        <label className="flex items-center gap-2 text-sm font-medium">
-          <span className="w-4 h-4 rounded bg-primary flex items-center justify-center">
-            <CheckCircle2 className="w-3 h-3 text-white" />
-          </span>
-          Find Emails (1 credit)
-        </label>
-        <label className="flex items-center gap-2 text-sm text-muted-foreground">
-          <span className="w-4 h-4 rounded border border-border" />
-          Find Mobile Numbers (20 credits)
-        </label>
+    <div className={`flex gap-6 items-start transition-all duration-500 mx-auto ${showResult ? "max-w-4xl justify-start" : "max-w-lg justify-center"}`}>
+      <div className={`bg-white border border-border rounded-2xl shadow-sm p-8 transition-all duration-500 ${showResult ? "w-1/2" : "w-full"}`}>
+        <div className="flex gap-4 mb-4">
+          <label className="flex items-center gap-2 text-sm font-medium">
+            <span className="w-4 h-4 rounded bg-primary flex items-center justify-center">
+              <CheckCircle2 className="w-3 h-3 text-white" />
+            </span>
+            Find Emails (1 credit)
+          </label>
+          <label className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span className="w-4 h-4 rounded border border-border" />
+            Find Mobile Numbers (20 credits)
+          </label>
+        </div>
+        <p className="text-xs text-muted-foreground mb-5">Full Name + Company or Domain required. LinkedIn URL optional.</p>
+
+        <div className="flex flex-col gap-3">
+          <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="e.g. Sarah Chen" />
+          <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="e.g. stripe.com" />
+          <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="Optional — improves mobile match accuracy" />
+        </div>
+
+        <button className="mt-5 w-full rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 hover:bg-primary/90 transition">
+          {phase === "loading" ? (
+            <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+          ) : (
+            <>Find Contact <ArrowRight className="w-4 h-4" /></>
+          )}
+        </button>
       </div>
-      <p className="text-xs text-muted-foreground mb-5">Full Name + Company or Domain required. LinkedIn URL optional.</p>
 
-      <div className="flex flex-col gap-3">
-        <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="e.g. Sarah Chen" />
-        <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="e.g. stripe.com" />
-        <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="Optional — improves mobile match accuracy" />
-      </div>
-
-      <button className="mt-5 w-full rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 hover:bg-primary/90 transition">
-        {phase === "loading" ? (
-          <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-        ) : (
-          <>Find Contact <ArrowRight className="w-4 h-4" /></>
-        )}
-      </button>
-
-      {phase === "result" && (
-        <div className="bg-green-50 border border-green-200 rounded-2xl p-5 mt-4 fade-up">
+      {showResult && (
+        <div className="w-1/2 bg-green-50 border border-green-200 rounded-2xl p-5 fade-up">
           <div className="font-semibold text-sm">Sarah Chen — Chief Revenue Officer @ Stripe</div>
           <div className="mt-3 flex items-center gap-2 text-sm">
             <Mail className="w-4 h-4 text-muted-foreground" /> sarah.chen@stripe.com
@@ -98,6 +101,7 @@ function SingleLead() {
     </div>
   );
 }
+
 
 function BulkUpload() {
   const [phase, setPhase] = useState<"progress" | "result">("progress");
