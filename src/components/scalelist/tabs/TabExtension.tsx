@@ -52,8 +52,8 @@ export function TabExtension() {
             className="w-full h-full object-cover object-top"
           />
 
-
           {/* Popup */}
+
           <div className="absolute top-4 right-4 bg-white rounded-xl shadow-2xl border border-border w-72 p-4 z-10">
             {step === 0 && (
               <div className="fade-up">
