@@ -1,3 +1,4 @@
+import anthropicHomepage from "../../../assets/anthropic-homepage.png.asset.json";
 import { useEffect, useState } from "react";
 import { CheckCircle2, Globe, Zap, Plus } from "lucide-react";
 
@@ -45,11 +46,12 @@ export function TabExtension() {
 
         {/* Viewport */}
         <div className="bg-white rounded-xl border border-border overflow-hidden min-h-[400px] relative">
-          <div className="bg-white h-10 border-b border-gray-200 w-full" />
-          <div className="bg-gradient-to-r from-gray-100 to-gray-50 h-32 mx-6 mt-4 rounded-xl" />
-          <div className="mx-6 mt-3 h-3 rounded bg-gray-200/60 w-3/4" />
-          <div className="mx-6 mt-2 h-3 rounded bg-gray-200/60 w-1/2" />
-          <div className="mx-6 mt-2 h-3 rounded bg-gray-200/60 w-2/3" />
+          <img
+            src={anthropicHomepage.url}
+            alt="Anthropic homepage"
+            className="w-full h-full object-cover object-top"
+          />
+
 
           {/* Popup */}
           <div className="absolute top-4 right-4 bg-white rounded-xl shadow-2xl border border-border w-72 p-4 z-10">
