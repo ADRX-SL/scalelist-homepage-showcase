@@ -6,14 +6,14 @@ type Sub = "single" | "bulk";
 export function TabCsv() {
   const [sub, setSub] = useState<Sub>("single");
   return (
-    <div className="h-full overflow-y-auto p-6 sm:p-10">
+    <div className="h-full overflow-hidden p-5 sm:p-6">
       <div className="flex justify-center mb-2">
         <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary bg-primary/10 border border-primary/30 rounded-full px-3 py-1">
           No-Code Enrichment
         </span>
       </div>
 
-      <div className="flex justify-center mt-4 mb-8">
+      <div className="flex justify-center mt-3 mb-5">
         <div className="bg-gray-100 rounded-full p-1 flex">
           {(["single", "bulk"] as Sub[]).map((s) => (
             <button
@@ -43,11 +43,10 @@ function SingleLead() {
     return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
   }, [phase === "form"]);
 
-  const showResult = phase === "result";
   return (
-    <div className={`flex gap-6 items-start transition-all duration-500 mx-auto ${showResult ? "max-w-4xl justify-start" : "max-w-lg justify-center"}`}>
-      <div className={`bg-white border border-border rounded-2xl shadow-sm p-8 transition-all duration-500 ${showResult ? "w-1/2" : "w-full"}`}>
-        <div className="flex gap-4 mb-4">
+    <div className="flex gap-4 items-stretch justify-center max-w-4xl mx-auto fade-up">
+      <div className="w-1/2 bg-white border border-border rounded-2xl shadow-sm p-5">
+        <div className="flex gap-4 mb-3">
           <label className="flex items-center gap-2 text-sm font-medium">
             <span className="w-4 h-4 rounded bg-primary flex items-center justify-center">
               <CheckCircle2 className="w-3 h-3 text-white" />
@@ -59,15 +58,15 @@ function SingleLead() {
             Find Mobile Numbers (20 credits)
           </label>
         </div>
-        <p className="text-xs text-muted-foreground mb-5">Full Name + Company or Domain required. LinkedIn URL optional.</p>
+        <p className="text-xs text-muted-foreground mb-4">Full Name + Company or Domain required. LinkedIn URL optional.</p>
 
-        <div className="flex flex-col gap-3">
-          <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="e.g. Sarah Chen" />
-          <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="e.g. stripe.com" />
-          <input className="rounded-xl border border-border px-4 py-3 text-sm" placeholder="Optional — improves mobile match accuracy" />
+        <div className="flex flex-col gap-2.5">
+          <input className="rounded-xl border border-border px-4 py-2.5 text-sm" placeholder="e.g. Sarah Chen" />
+          <input className="rounded-xl border border-border px-4 py-2.5 text-sm" placeholder="e.g. stripe.com" />
+          <input className="rounded-xl border border-border px-4 py-2.5 text-sm" placeholder="Optional — improves mobile match accuracy" />
         </div>
 
-        <button className="mt-5 w-full rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 hover:bg-primary/90 transition">
+        <button className="mt-4 w-full rounded-full bg-primary text-primary-foreground px-6 py-2.5 text-sm font-semibold inline-flex items-center justify-center gap-2 hover:bg-primary/90 transition">
           {phase === "loading" ? (
             <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
           ) : (
@@ -76,28 +75,42 @@ function SingleLead() {
         </button>
       </div>
 
-      {showResult && (
-        <div className="w-1/2 bg-green-50 border border-green-200 rounded-2xl p-5 fade-up">
-          <div className="font-semibold text-sm">Sarah Chen — Chief Revenue Officer @ Stripe</div>
-          <div className="mt-3 flex items-center gap-2 text-sm">
-            <Mail className="w-4 h-4 text-muted-foreground" /> sarah.chen@stripe.com
-            <span className="inline-flex items-center gap-1 bg-white text-green-700 border border-green-200 rounded-full px-2 py-0.5 text-[10px] font-medium ml-auto">
-              <CheckCircle2 className="w-3 h-3" /> Verified
-            </span>
+      <div className="w-1/2 bg-green-50 border border-green-200 rounded-2xl p-5 fade-up">
+        {phase === "form" && (
+          <div className="h-full flex flex-col items-center justify-center text-center">
+            <div className="text-lg font-semibold text-green-800">Find Contact</div>
+            <p className="text-sm text-green-700/70 mt-1">Enter lead details and click Find Contact</p>
           </div>
-          <div className="mt-2 flex items-center gap-2 text-sm">
-            <Phone className="w-4 h-4 text-muted-foreground" /> +1 (415) 555-0847
-            <span className="inline-flex items-center gap-1 bg-white text-green-700 border border-green-200 rounded-full px-2 py-0.5 text-[10px] font-medium ml-auto">
-              <CheckCircle2 className="w-3 h-3" /> Verified
-            </span>
+        )}
+        {phase === "loading" && (
+          <div className="h-full flex flex-col items-center justify-center text-center">
+            <span className="w-6 h-6 border-2 border-green-300 border-t-green-700 rounded-full animate-spin mb-2" />
+            <div className="text-sm font-medium text-green-800">Finding contact...</div>
           </div>
-          <div className="text-xs text-muted-foreground mt-2">Last verified Jun 2026</div>
-          <div className="flex gap-2 mt-3">
-            <button className="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-semibold">Export CSV</button>
-            <button className="rounded-full bg-primary text-primary-foreground px-3 py-1.5 text-xs font-semibold">Push to CRM</button>
-          </div>
-        </div>
-      )}
+        )}
+        {phase === "result" && (
+          <>
+            <div className="font-semibold text-sm">Sarah Chen — Chief Revenue Officer @ Stripe</div>
+            <div className="mt-3 flex items-center gap-2 text-sm">
+              <Mail className="w-4 h-4 text-muted-foreground shrink-0" /> sarah.chen@stripe.com
+              <span className="inline-flex items-center gap-1 bg-white text-green-700 border border-green-200 rounded-full px-2 py-0.5 text-[10px] font-medium ml-auto">
+                <CheckCircle2 className="w-3 h-3" /> Verified
+              </span>
+            </div>
+            <div className="mt-2 flex items-center gap-2 text-sm">
+              <Phone className="w-4 h-4 text-muted-foreground shrink-0" /> +1 (415) 555-0847
+              <span className="inline-flex items-center gap-1 bg-white text-green-700 border border-green-200 rounded-full px-2 py-0.5 text-[10px] font-medium ml-auto">
+                <CheckCircle2 className="w-3 h-3" /> Verified
+              </span>
+            </div>
+            <div className="text-xs text-muted-foreground mt-2">Last verified Jun 2026</div>
+            <div className="flex gap-2 mt-3">
+              <button className="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-semibold">Export CSV</button>
+              <button className="rounded-full bg-primary text-primary-foreground px-3 py-1.5 text-xs font-semibold">Push to CRM</button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
