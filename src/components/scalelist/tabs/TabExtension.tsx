@@ -20,14 +20,8 @@ export function TabExtension() {
   }, [step]);
 
   return (
-    <div className="h-full overflow-y-auto p-6">
-      <div className="flex justify-center mb-4">
-        <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary bg-primary/10 border border-primary/30 rounded-full px-3 py-1">
-          Works Everywhere Online
-        </span>
-      </div>
-
-      <div className="bg-gray-100 rounded-2xl p-4">
+    <div className="h-full overflow-hidden p-4 flex flex-col">
+      <div className="bg-gray-100 rounded-2xl p-3 flex-1 flex flex-col">
         {/* Browser bar */}
         <div className="bg-white rounded-xl p-2.5 mb-3 flex items-center gap-3 shadow-sm border border-border">
           <div className="flex gap-1.5">
