@@ -132,6 +132,7 @@ export function TabExtension() {
           Works Everywhere Online
         </span>
       </div>
+    </div>
   );
 }
 
