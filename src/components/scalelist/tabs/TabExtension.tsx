@@ -122,10 +122,15 @@ export function TabExtension() {
         </div>
       </div>
 
-      <div className="flex gap-3 justify-center flex-wrap py-4 border-t border-border mt-6">
+      <div className="flex gap-3 justify-center flex-wrap py-2 mt-2">
         <Chip icon={<Globe className="w-3.5 h-3.5 text-blue-500" />} text="Turn any website into a lead list" />
         <Chip icon={<CheckCircle2 className="w-3.5 h-3.5 text-green-500" />} text="Works on LinkedIn, company sites, anywhere" />
         <Chip icon={<Zap className="w-3.5 h-3.5 text-purple-500" />} text="Verified emails + mobiles in seconds" />
+      </div>
+      <div className="flex justify-center pt-2">
+        <span className="inline-block text-[10px] font-semibold uppercase tracking-widest text-primary bg-primary/10 border border-primary/30 rounded-full px-3 py-1">
+          Works Everywhere Online
+        </span>
       </div>
     </div>
   );
