@@ -23,13 +23,13 @@ export function TabExtension() {
     <div className="h-full overflow-hidden p-4 flex flex-col">
       <div className="bg-gray-100 rounded-2xl p-3 flex-1 flex flex-col">
         {/* Browser bar */}
-        <div className="bg-white rounded-xl p-2.5 mb-3 flex items-center gap-3 shadow-sm border border-border">
+        <div className="bg-white rounded-xl p-2 mb-2 flex items-center gap-3 shadow-sm border border-border">
           <div className="flex gap-1.5">
             <span className="w-3 h-3 rounded-full bg-red-500" />
             <span className="w-3 h-3 rounded-full bg-yellow-500" />
             <span className="w-3 h-3 rounded-full bg-green-500" />
           </div>
-          <div className="flex-1 bg-gray-100 rounded-full px-4 py-1.5 text-sm text-gray-400">anthropic.com</div>
+          <div className="flex-1 bg-gray-100 rounded-full px-4 py-1 text-sm text-gray-400">anthropic.com</div>
           <div className="flex items-center gap-1.5">
             <span className="w-5 h-5 rounded bg-gray-200" />
             <span className="w-5 h-5 rounded bg-gray-200" />
@@ -39,7 +39,7 @@ export function TabExtension() {
         </div>
 
         {/* Viewport */}
-        <div className="bg-white rounded-xl border border-border overflow-hidden min-h-[400px] relative">
+        <div className="bg-white rounded-xl border border-border overflow-hidden h-[270px] relative flex-1">
           <img
             src={anthropicHomepage.url}
             alt="Anthropic homepage"
@@ -48,7 +48,7 @@ export function TabExtension() {
 
           {/* Popup */}
 
-          <div className="absolute top-4 right-4 bg-white rounded-xl shadow-2xl border border-border w-72 p-4 z-10">
+          <div className="absolute top-2 right-2 bg-white rounded-xl shadow-2xl border border-border w-72 p-3 z-10">
             {step === 0 && (
               <div className="fade-up">
                 <div className="flex items-center gap-2">
