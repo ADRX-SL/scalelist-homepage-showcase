@@ -7,7 +7,7 @@ import { FeatureRows } from "@/components/scalelist/FeatureRows";
 import { AccuracyBand } from "@/components/scalelist/AccuracyBand";
 import { DataRefresh } from "@/components/scalelist/DataRefresh";
 import { UseCases } from "@/components/scalelist/UseCases";
-import { BottomCTA } from "@/components/scalelist/BottomCTA";
+import { Integrations } from "@/components/scalelist/Integrations";
 import { Footer } from "@/components/scalelist/Footer";
 
 export const Route = createFileRoute("/")({
@@ -29,12 +29,12 @@ function Index() {
       <main>
         <HeroSection />
         <LogoBar />
-        <Testimonial />
         <FeatureRows />
         <AccuracyBand />
-        <DataRefresh />
         <UseCases />
-        <BottomCTA />
+        <Integrations />
+        <Testimonial />
+        <DataRefresh />
       </main>
       <Footer />
     </div>

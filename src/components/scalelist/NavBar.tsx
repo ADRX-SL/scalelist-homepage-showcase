@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Zap, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 
 const LINKS = {
   logo: "https://scalelist.com",
@@ -26,10 +26,7 @@ export function NavBar() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href={LINKS.logo} className="flex items-center gap-2 font-extrabold text-lg tracking-tight">
-          <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-primary text-primary-foreground">
-            <Zap className="w-4 h-4" fill="currentColor" />
-          </span>
+        <a href={LINKS.logo} className="font-extrabold text-lg tracking-tight text-foreground">
           Scalelist
         </a>
 

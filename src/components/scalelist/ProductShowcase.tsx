@@ -3,16 +3,13 @@ import { Code2 } from "lucide-react";
 import { TabClaude } from "./tabs/TabClaude";
 import { TabApi } from "./tabs/TabApi";
 import { TabCsv } from "./tabs/TabCsv";
-import { TabExtension } from "./tabs/TabExtension";
 import { ClaudeLogo } from "./ClaudeLogo";
-import { ChromeLogo } from "./ChromeLogo";
 import { UploadLogo } from "./UploadLogo";
 
 const TABS = [
-  { id: "claude", label: "Find & Enrich leads", icon: ClaudeLogo },
-  { id: "ext", label: "Find & Enrich leads", icon: ChromeLogo },
-  { id: "csv", label: "CSV & CRM enrichment", icon: UploadLogo },
-  { id: "api", label: "Enrich leads via API", icon: Code2 },
+  { id: "claude", label: "Find new leads", icon: ClaudeLogo },
+  { id: "csv", label: "Enrich data", icon: UploadLogo },
+  { id: "api", label: "Export & push", icon: Code2 },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -47,9 +44,8 @@ export function ProductShowcase() {
 
       <div key={active} className="fade-up h-[580px] overflow-hidden">
         {active === "claude" && <TabClaude />}
-        {active === "api" && <TabApi />}
         {active === "csv" && <TabCsv />}
-        {active === "ext" && <TabExtension />}
+        {active === "api" && <TabApi />}
       </div>
     </div>
   );
