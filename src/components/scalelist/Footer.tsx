@@ -1,4 +1,4 @@
-import { Zap, Linkedin, Youtube } from "lucide-react";
+import { Linkedin, Youtube } from "lucide-react";
 
 const COLS: { title: string; links: { label: string; href: string }[] }[] = [
   {
@@ -71,12 +71,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border mt-12 pt-6 flex items-center justify-between flex-wrap gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-primary text-primary-foreground">
-              <Zap className="w-3.5 h-3.5" fill="currentColor" />
-            </span>
-            © 2026 Scalelist · hello@scalelist.com
-          </div>
+          <div>© 2026 Scalelist · hello@scalelist.com</div>
           <div className="flex items-center gap-3">
             <a href="https://www.linkedin.com/company/scalelist" aria-label="LinkedIn" className="hover:text-foreground">
               <Linkedin className="w-5 h-5" />

@@ -8,26 +8,19 @@ export function Testimonial() {
               "Scalelist is a must-have!"
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mt-6">
-              We've been using Scalelist for six months and are extremely satisfied. The tool is powerful and intuitive,
-              and the founders provide outstanding support. What stands out is that user feedback is not just heard but
-              actively implemented. Regular updates make it even better. If you want to scale efficiently, Scalelist is a must-have!
+              We use Scalelist everyday. It's a really good product that helps us find our prospects' emails and phone
+              numbers.
             </p>
-            <div className="font-semibold mt-6">Manuel Drissner</div>
-            <div className="text-sm text-muted-foreground">Head of Sales @ Consolidate Software</div>
-            <img
-              src="https://scalelist.com/wp-content/uploads/2025/09/Manuel-Drissner-company.webp"
-              alt="Consolidate Software"
-              className="h-6 grayscale mt-3"
-              loading="lazy"
-            />
+            <div className="font-semibold mt-6">Baptiste Graffin</div>
+            <div className="text-sm text-muted-foreground">VP of Sales APAC @ Happydemics</div>
           </div>
-          <div className="bg-[#F5C842] rounded-[2rem] overflow-hidden aspect-square">
-            <img
-              src="https://scalelist.com/wp-content/uploads/2026/03/Manuel-Drissner.webp"
-              alt="Manuel Drissner"
-              className="object-cover w-full h-full object-top"
-              loading="lazy"
-            />
+          <div className="flex items-center justify-center">
+            <div
+              aria-label="Baptiste Graffin"
+              className="w-40 h-40 md:w-56 md:h-56 rounded-full bg-primary/10 text-primary flex items-center justify-center text-4xl md:text-6xl font-extrabold tracking-tight"
+            >
+              BG
+            </div>
           </div>
         </div>
       </div>
