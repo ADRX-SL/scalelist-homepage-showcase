@@ -66,17 +66,16 @@ export function HeroSection() {
         </div>
 
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground max-w-4xl mx-auto">
-          Find any lead's email &<br />
-          phone,{" "}
+          Build your{" "}
           <span className="text-primary relative inline-block">
-            anywhere
+            perfect lead lists
             <span className="absolute left-0 right-0 -bottom-1 h-1 bg-primary/30 rounded-full" />
           </span>
         </h1>
 
-        <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-          Find 80%+ of your leads' verified emails and mobile numbers, anywhere, worldwide, in one click.
-          Stop losing deals because you couldn't reach them.
+        <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Describe your perfect lead, then have our AI Leads Finder search for it and enrich your list with verified
+          emails and mobile numbers, anywhere in the world, in one click.
         </p>
 
         <PromptWidget />
