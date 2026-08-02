@@ -44,7 +44,7 @@ export function TabApi() {
   }, [done]);
 
   return (
-    <div className="h-full flex flex-col p-5 sm:p-7 overflow-y-auto">
+    <div className="h-full flex flex-col justify-center p-5 sm:p-7 overflow-y-auto">
       <div className="text-center max-w-2xl mx-auto">
         <h3 className="text-lg sm:text-2xl font-extrabold tracking-tight">
           Send your enriched leads straight into your outreach tools.
