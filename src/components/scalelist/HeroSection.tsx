@@ -20,38 +20,32 @@ function PromptWidget() {
   };
 
   return (
-    <div className="mt-10 max-w-2xl mx-auto text-left">
-      <div className="flex gap-2 justify-center mb-3">
-        <span className="rounded-full bg-primary/10 text-primary px-4 py-1.5 text-xs font-semibold">
-          Describe your ideal customer
-        </span>
-        <span className="rounded-full bg-white border border-border text-muted-foreground px-4 py-1.5 text-xs font-semibold">
-          Use my domain
-        </span>
-      </div>
-
+    <div className="mt-10 w-full max-w-3xl mx-auto text-left">
       <div
         role="button"
         tabIndex={0}
         onClick={go}
         onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && go()}
-        className="group flex items-center gap-3 rounded-2xl bg-white border border-border shadow-lg shadow-foreground/5 px-4 py-4 cursor-text hover:border-primary/40 transition"
+        className="group flex flex-col justify-between min-h-[168px] sm:min-h-[184px] rounded-3xl bg-white border border-border shadow-xl shadow-foreground/5 px-5 sm:px-7 py-5 sm:py-6 cursor-text hover:border-primary/40 transition"
       >
-        <Paperclip className="w-5 h-5 text-muted-foreground shrink-0" aria-hidden="true" />
-        <span className="flex-1 text-sm md:text-base text-muted-foreground truncate">
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
           Describe the leads you want. e.g. Heads of Sales at US SaaS companies, 50-200 employees
-        </span>
-        <button
-          type="button"
-          aria-label="Find leads"
-          onClick={(e) => {
-            e.stopPropagation();
-            go();
-          }}
-          className="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition"
-        >
-          <ArrowUp className="w-5 h-5" />
-        </button>
+        </p>
+
+        <div className="flex items-end justify-between gap-3 mt-6">
+          <Paperclip className="w-5 h-5 text-muted-foreground shrink-0" aria-hidden="true" />
+          <button
+            type="button"
+            aria-label="Find leads"
+            onClick={(e) => {
+              e.stopPropagation();
+              go();
+            }}
+            className="shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -72,17 +66,16 @@ export function HeroSection() {
         </div>
 
         <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground max-w-4xl mx-auto">
-          Find any lead's email &<br />
-          phone,{" "}
+          Build your{" "}
           <span className="text-primary relative inline-block">
-            anywhere
+            perfect lead lists
             <span className="absolute left-0 right-0 -bottom-1 h-1 bg-primary/30 rounded-full" />
           </span>
         </h1>
 
-        <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed">
-          Find 80%+ of your leads' verified emails and mobile numbers, anywhere, worldwide, in one click.
-          Stop losing deals because you couldn't reach them.
+        <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          Describe your perfect lead, then have our AI Leads Finder search for it and enrich your list with verified
+          emails and mobile numbers, anywhere in the world, in one click.
         </p>
 
         <PromptWidget />

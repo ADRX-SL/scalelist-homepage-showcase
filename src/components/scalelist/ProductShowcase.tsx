@@ -9,7 +9,7 @@ import { UploadLogo } from "./UploadLogo";
 const TABS = [
   { id: "claude", label: "Find new leads", icon: ClaudeLogo },
   { id: "csv", label: "Enrich data", icon: UploadLogo },
-  { id: "api", label: "Export & push", icon: Code2 },
+  { id: "api", label: "Sequence your leads", icon: Code2 },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -18,7 +18,7 @@ export function ProductShowcase() {
   const [active, setActive] = useState<TabId>("claude");
 
   return (
-    <div className="max-w-6xl mx-auto rounded-[2rem] border border-border bg-white shadow-xl overflow-hidden text-left">
+    <div className="max-w-7xl mx-auto rounded-[2rem] border border-border bg-white shadow-xl overflow-hidden text-left">
       <div className="bg-gray-50 border-b border-border px-4 sm:px-6 pt-4">
         <div className="flex justify-center gap-1 sm:gap-2 overflow-x-auto pb-0 no-scrollbar">
           {TABS.map((t) => {
@@ -42,7 +42,7 @@ export function ProductShowcase() {
         </div>
       </div>
 
-      <div key={active} className="fade-up h-[580px] overflow-hidden">
+      <div key={active} className="fade-up h-[560px] sm:h-[600px] lg:h-[640px] overflow-hidden">
         {active === "claude" && <TabClaude />}
         {active === "csv" && <TabCsv />}
         {active === "api" && <TabApi />}
