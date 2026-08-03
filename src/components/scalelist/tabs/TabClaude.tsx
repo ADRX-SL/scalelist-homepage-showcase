@@ -180,47 +180,43 @@ export function TabClaude() {
 
         <div className="flex-1 overflow-y-auto min-h-0">
           <div className="overflow-x-auto rounded-xl border border-border">
-            <table className="w-full text-sm table-fixed min-w-[1150px]">
-              <colgroup>
-                {COLUMNS.map((c) => (
-                  <col key={c.key} className={c.width} />
-                ))}
-              </colgroup>
+            <table className="w-full text-xs min-w-[640px]">
               <thead className="bg-gray-50">
-                <tr className="text-left">
-                  {COLUMNS.map((c) => (
-                    <th
-                      key={c.key}
-                      className="text-[11px] font-medium text-muted-foreground px-3 py-2.5 whitespace-nowrap border-r border-border last:border-r-0"
-                    >
-                      {c.label}
-                    </th>
-                  ))}
+                <tr className="text-left text-[10px] uppercase tracking-wider text-muted-foreground">
+                  <th className="px-3 py-2">in</th>
+                  <th className="px-3 py-2">First name</th>
+                  <th className="px-3 py-2">Last name</th>
+                  <th className="px-3 py-2">Job title</th>
+                  <th className="px-3 py-2">Company</th>
+                  <th className="px-3 py-2">City</th>
+                  <th className="px-3 py-2">Country</th>
                 </tr>
               </thead>
               <tbody>
                 {ROWS.map((r, i) => (
                   <tr
                     key={r.first + r.last}
-                    className="bg-white transition-opacity duration-300"
+                    className="border-t border-border bg-white transition-opacity duration-300"
                     style={{ opacity: i < visibleRows ? 1 : 0 }}
                   >
-                    <td className="px-3 py-3 border-t border-border truncate text-primary font-medium">
-                      {r.first} {r.last}
+                    <td className="px-3 py-2"><LinkedInIcon /></td>
+                    <td className="px-3 py-2 font-medium">{r.first}</td>
+                    <td className="px-3 py-2 font-medium">{r.last}</td>
+                    <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{r.title}</td>
+                    <td className="px-3 py-2">
+                      <span className="flex items-center gap-2 whitespace-nowrap">
+                        <CompanyLogo domain={r.domain} name={r.company} />
+                        <span className="text-muted-foreground">{r.company}</span>
+                      </span>
                     </td>
-                    <td className="px-3 py-3 border-t border-border truncate">{r.first}</td>
-                    <td className="px-3 py-3 border-t border-border truncate">{r.last}</td>
-                    <td className="px-3 py-3 border-t border-border truncate">{r.title}</td>
-                    <td className="px-3 py-3 border-t border-border truncate text-primary font-medium">{r.company}</td>
-                    <td className="px-3 py-3 border-t border-border truncate">{r.industry}</td>
-                    <td className="px-3 py-3 border-t border-border truncate">{r.size}</td>
-                    <td className="px-3 py-3 border-t border-border truncate">{r.city}</td>
-                    <td className="px-3 py-3 border-t border-border truncate">{r.country}</td>
+                    <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{r.city}</td>
+                    <td className="px-3 py-2 text-muted-foreground">United States</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+
         </div>
 
       </div>
