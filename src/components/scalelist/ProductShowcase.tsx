@@ -3,11 +3,10 @@ import { Code2 } from "lucide-react";
 import { TabClaude } from "./tabs/TabClaude";
 import { TabApi } from "./tabs/TabApi";
 import { TabCsv } from "./tabs/TabCsv";
-import { ClaudeLogo } from "./ClaudeLogo";
 import { UploadLogo } from "./UploadLogo";
 
 const TABS = [
-  { id: "claude", label: "Find new leads", icon: ClaudeLogo },
+  { id: "claude", label: "Find new leads" },
   { id: "csv", label: "Enrich data", icon: UploadLogo },
   { id: "api", label: "Sequence your leads", icon: Code2 },
 ] as const;
