@@ -1,6 +1,25 @@
 import React from "react";
 import { ClaudeLogo } from "@/components/scalelist/ClaudeLogo";
 import { OpenAiLogo } from "@/components/scalelist/OpenAiLogo";
+import openaiLogo from "@/assets/logos/openai.png";
+import stripeLogo from "@/assets/logos/stripe.png";
+import salesforceLogo from "@/assets/logos/salesforce.png";
+import hubspotLogo from "@/assets/logos/hubspot.png";
+import slackLogo from "@/assets/logos/slack.png";
+import figmaLogo from "@/assets/logos/figma.png";
+import notionLogo from "@/assets/logos/notion.png";
+import datadogLogo from "@/assets/logos/datadog.png";
+
+const LOGOS: Record<string, string> = {
+  "openai.com": openaiLogo,
+  "stripe.com": stripeLogo,
+  "salesforce.com": salesforceLogo,
+  "hubspot.com": hubspotLogo,
+  "slack.com": slackLogo,
+  "figma.com": figmaLogo,
+  "notion.so": notionLogo,
+  "datadoghq.com": datadogLogo,
+};
 
 type Cta = { label: string; href: string };
 
