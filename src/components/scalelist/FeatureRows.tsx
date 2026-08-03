@@ -14,28 +14,28 @@ const CARDS: {
   {
     eyebrow: "FIND ANY LEADS",
     h2: "Describe your leads, get a ready-to-use list.",
-    body: "Tell Scalelist who you want to reach in plain English: role, industry, location, and company size. Get a verified, contact-ready lead list built directly in Scalelist, complete with work emails and mobile numbers. Free to explore, 1 credit per email, 20 per mobile, 0 for a miss.",
+    body: "Find verified business emails and mobile numbers right from Anywhere.",
     ctas: [{ label: "Learn more", href: "https://scalelist.com/leads-finder/", primary: true }],
     visual: <VisualLeadFinder />,
   },
   {
     eyebrow: "ENRICH EXISTING LISTS",
     h2: "Enrich leads from LinkedIn, CSVs, CRMs, and any website.",
-    body: "Use the Scalelist Chrome Extension on any company page or LinkedIn profile. Upload a CSV, connect your CRM, or find contacts by domain. Every workflow is covered, with verified emails and mobile numbers added in a single pass.",
+    body: "Upload your own CSV or sync via API. We enrich your lists with mobile numbers and verified B2B emails.",
     ctas: [{ label: "Learn more", href: "https://scalelist.com/extension/", primary: true }],
     visual: <VisualExtension />,
   },
   {
     eyebrow: "VERIFY & CLEAN",
     h2: "Verified data that actually reaches the inbox.",
-    body: "Every email is triple-checked for syntax, MX records, and SMTP. Every mobile is carrier-verified. Around 99% email verification accuracy on weekly-refreshed data keeps your CRM clean and your bounce rate under 5%.",
+    body: "Recover 20 to 30% more usable contacts in milliseconds. Verify risky addresses and find valid inboxes hidden behind catch all domains and SEGs. Kill bounce rates and reach real inboxes.",
     ctas: [{ label: "Learn more", href: "https://scalelist.com/email-verifier/", primary: true }],
     visual: <VisualVerifier />,
   },
   {
     eyebrow: "INTEGRATIONS | API | EXPORT | MCP",
     h2: "Connect Scalelist to every tool, AI agent, and workflow.",
-    body: "Connect Scalelist to Claude or ChatGPT through our MCP server. Integrate with HubSpot, Salesforce, or any other tool using our API, Zapier, or Make, or export your data to CSV or Excel.",
+    body: "Connect Scalelist to HubSpot, Salesforce, or any tool via our API, Zapier or Make – or simply export to CSV and Excel.",
     ctas: [
       { label: "Learn more", href: "https://scalelist.com/integrations/" },
       { label: "Get an API key", href: "https://app.scalelist.com/docs" },
