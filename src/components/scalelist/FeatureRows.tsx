@@ -34,7 +34,8 @@ const PILL: Record<string, string> = {
 
 function CompanyLogo({ domain, name }: { domain: string; name: string }) {
   const [failed, setFailed] = React.useState(false);
-  if (failed) {
+  const src = LOGOS[domain];
+  if (failed || !src) {
     return (
       <span className="w-5 h-5 rounded-sm bg-primary/10 text-primary text-[10px] font-bold flex items-center justify-center shrink-0">
         {name.charAt(0)}
@@ -43,7 +44,7 @@ function CompanyLogo({ domain, name }: { domain: string; name: string }) {
   }
   return (
     <img
-      src={`https://logo.clearbit.com/${domain}`}
+      src={src}
       alt={`${name} logo`}
       loading="lazy"
       onError={() => setFailed(true)}
