@@ -21,7 +21,7 @@ export function ProductShowcase() {
       <div className="bg-gray-50 border-b border-border px-4 sm:px-6 pt-4">
         <div className="flex justify-center gap-1 sm:gap-2 overflow-x-auto pb-0 no-scrollbar">
           {TABS.map((t) => {
-            const Icon = t.icon;
+            const Icon = "icon" in t ? t.icon : undefined;
             const isActive = active === t.id;
             return (
               <button
@@ -33,7 +33,7 @@ export function ProductShowcase() {
                     : "flex items-center gap-2 whitespace-nowrap rounded-full px-4 sm:px-5 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                 }
               >
-                <Icon className="w-4 h-4" />
+                {Icon && <Icon className="w-4 h-4" />}
                 {t.label}
               </button>
             );
