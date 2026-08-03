@@ -8,15 +8,38 @@ const CHIPS = [
   "Signal: hiring SDR/AE",
 ];
 
-const ROWS = [
-  { fit: 96, company: "Northwind Labs", cat: "Revenue ops", funding: "Series B · $32M", head: "180", signal: "Hiring 4 AEs" },
-  { fit: 94, company: "Beacon Analytics", cat: "Data & BI", funding: "Series A · $14M", head: "72", signal: "Hiring 3 SDRs" },
-  { fit: 92, company: "Strata Cloud", cat: "Infrastructure", funding: "Series B · $45M", head: "240", signal: "Hiring 6 AEs" },
-  { fit: 90, company: "Pulse Metrics", cat: "Product analytics", funding: "Series A · $11M", head: "58", signal: "Hiring 2 SDRs" },
-  { fit: 88, company: "Cipher Works", cat: "Security", funding: "Series A · $18M", head: "96", signal: "Hiring 3 AEs" },
-  { fit: 87, company: "Orbit Sync", cat: "Integrations", funding: "Series B · $28M", head: "155", signal: "Hiring 5 SDRs" },
-  { fit: 85, company: "Lumen Data", cat: "Data platform", funding: "Series A · $9M", head: "44", signal: "Hiring 2 AEs" },
-  { fit: 83, company: "Cadence HQ", cat: "Sales enablement", funding: "Series B · $36M", head: "210", signal: "Hiring 4 SDRs" },
+type LeadRow = {
+  first: string;
+  last: string;
+  title: string;
+  company: string;
+  industry: string;
+  size: string;
+  city: string;
+  country: string;
+};
+
+const ROWS: LeadRow[] = [
+  { first: "Adeel", last: "Raza", title: "Co-Founder & CEO", company: "Unlayer", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
+  { first: "Arvind", last: "Parthiban", title: "Co-Founder & CEO", company: "SuperOps", industry: "Software Development", size: "51", city: "San Francisco", country: "US" },
+  { first: "David", last: "Sneider", title: "Co-Founder", company: "Lit Protocol", industry: "Technology, Information…", size: "11", city: "San Francisco", country: "US" },
+  { first: "Geoffroy", last: "D'halluin", title: "CEO & co-founder", company: "Guideflow", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
+  { first: "Guillaume", last: "Marquis", title: "Co-Founder", company: "Pancake", industry: "Software Development", size: "2", city: "San Francisco", country: "US" },
+  { first: "Hoshang", last: "Mehta", title: "Co-Founder", company: "Pylar", industry: "Technology, Information…", size: "11", city: "Bengaluru", country: "IO" },
+  { first: "Jamie", last: "Sutherland", title: "Co-Founder & CEO", company: "Sonix Inc", industry: "Technology, Information…", size: "11", city: "San Francisco", country: "US" },
+  { first: "Roland", last: "Manyai", title: "CEO, Co-Founder", company: "Leopoly", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
+];
+
+const COLUMNS: { key: string; label: string; width: string }[] = [
+  { key: "profile", label: "LinkedIn Profile URL", width: "w-[190px]" },
+  { key: "first", label: "First Name", width: "w-[120px]" },
+  { key: "last", label: "Last Name", width: "w-[120px]" },
+  { key: "title", label: "Job Title", width: "w-[160px]" },
+  { key: "company", label: "Company", width: "w-[150px]" },
+  { key: "industry", label: "Industry", width: "w-[170px]" },
+  { key: "size", label: "Company Size", width: "w-[120px]" },
+  { key: "city", label: "City", width: "w-[130px]" },
+  { key: "country", label: "Country", width: "w-[90px]" },
 ];
 
 const QUERY =
@@ -142,38 +165,49 @@ export function TabClaude() {
 
         <div className="flex-1 overflow-y-auto min-h-0">
           <div className="overflow-x-auto rounded-xl border border-border">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm table-fixed min-w-[1150px]">
+              <colgroup>
+                {COLUMNS.map((c) => (
+                  <col key={c.key} className={c.width} />
+                ))}
+              </colgroup>
               <thead className="bg-gray-50">
                 <tr className="text-left">
-                  {["Fit", "Company", "Category", "Funding", "Headcount", "Buying signal"].map((h) => (
+                  {COLUMNS.map((c) => (
                     <th
-                      key={h}
-                      className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider px-3 py-2.5 whitespace-nowrap"
+                      key={c.key}
+                      className="text-[11px] font-medium text-muted-foreground px-3 py-2.5 whitespace-nowrap border-r border-border last:border-r-0"
                     >
-                      {h}
+                      {c.label}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {ROWS.slice(0, visibleRows).map((r, i) => (
-                  <tr key={r.company} className={i % 2 === 0 ? "bg-white" : "bg-gray-50/40"}>
-                    <td className="px-3 py-3 border-t border-border">
-                      <span className="inline-flex items-center rounded-full bg-primary/10 text-primary px-2 py-0.5 text-xs font-semibold">
-                        {r.fit}
-                      </span>
+                {ROWS.map((r, i) => (
+                  <tr
+                    key={r.first + r.last}
+                    className="bg-white transition-opacity duration-300"
+                    style={{ opacity: i < visibleRows ? 1 : 0 }}
+                  >
+                    <td className="px-3 py-3 border-t border-border truncate text-primary font-medium">
+                      {r.first} {r.last}
                     </td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap font-medium">{r.company}</td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap text-muted-foreground">{r.cat}</td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap">{r.funding}</td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap">{r.head}</td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap text-muted-foreground">{r.signal}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.first}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.last}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.title}</td>
+                    <td className="px-3 py-3 border-t border-border truncate text-primary font-medium">{r.company}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.industry}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.size}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.city}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.country}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
+
       </div>
     </div>
   );
