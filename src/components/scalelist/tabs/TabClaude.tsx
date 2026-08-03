@@ -8,15 +8,38 @@ const CHIPS = [
   "Signal: hiring SDR/AE",
 ];
 
-const ROWS = [
-  { fit: 96, company: "Northwind Labs", cat: "Revenue ops", funding: "Series B · $32M", head: "180", signal: "Hiring 4 AEs" },
-  { fit: 94, company: "Beacon Analytics", cat: "Data & BI", funding: "Series A · $14M", head: "72", signal: "Hiring 3 SDRs" },
-  { fit: 92, company: "Strata Cloud", cat: "Infrastructure", funding: "Series B · $45M", head: "240", signal: "Hiring 6 AEs" },
-  { fit: 90, company: "Pulse Metrics", cat: "Product analytics", funding: "Series A · $11M", head: "58", signal: "Hiring 2 SDRs" },
-  { fit: 88, company: "Cipher Works", cat: "Security", funding: "Series A · $18M", head: "96", signal: "Hiring 3 AEs" },
-  { fit: 87, company: "Orbit Sync", cat: "Integrations", funding: "Series B · $28M", head: "155", signal: "Hiring 5 SDRs" },
-  { fit: 85, company: "Lumen Data", cat: "Data platform", funding: "Series A · $9M", head: "44", signal: "Hiring 2 AEs" },
-  { fit: 83, company: "Cadence HQ", cat: "Sales enablement", funding: "Series B · $36M", head: "210", signal: "Hiring 4 SDRs" },
+type LeadRow = {
+  first: string;
+  last: string;
+  title: string;
+  company: string;
+  industry: string;
+  size: string;
+  city: string;
+  country: string;
+};
+
+const ROWS: LeadRow[] = [
+  { first: "Adeel", last: "Raza", title: "Co-Founder & CEO", company: "Unlayer", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
+  { first: "Arvind", last: "Parthiban", title: "Co-Founder & CEO", company: "SuperOps", industry: "Software Development", size: "51", city: "San Francisco", country: "US" },
+  { first: "David", last: "Sneider", title: "Co-Founder", company: "Lit Protocol", industry: "Technology, Information…", size: "11", city: "San Francisco", country: "US" },
+  { first: "Geoffroy", last: "D'halluin", title: "CEO & co-founder", company: "Guideflow", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
+  { first: "Guillaume", last: "Marquis", title: "Co-Founder", company: "Pancake", industry: "Software Development", size: "2", city: "San Francisco", country: "US" },
+  { first: "Hoshang", last: "Mehta", title: "Co-Founder", company: "Pylar", industry: "Technology, Information…", size: "11", city: "Bengaluru", country: "IO" },
+  { first: "Jamie", last: "Sutherland", title: "Co-Founder & CEO", company: "Sonix Inc", industry: "Technology, Information…", size: "11", city: "San Francisco", country: "US" },
+  { first: "Roland", last: "Manyai", title: "CEO, Co-Founder", company: "Leopoly", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
+];
+
+const COLUMNS: { key: string; label: string; width: string }[] = [
+  { key: "profile", label: "LinkedIn Profile URL", width: "w-[190px]" },
+  { key: "first", label: "First Name", width: "w-[120px]" },
+  { key: "last", label: "Last Name", width: "w-[120px]" },
+  { key: "title", label: "Job Title", width: "w-[160px]" },
+  { key: "company", label: "Company", width: "w-[150px]" },
+  { key: "industry", label: "Industry", width: "w-[170px]" },
+  { key: "size", label: "Company Size", width: "w-[120px]" },
+  { key: "city", label: "City", width: "w-[130px]" },
+  { key: "country", label: "Country", width: "w-[90px]" },
 ];
 
 const QUERY =
