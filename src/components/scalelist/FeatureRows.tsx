@@ -1,3 +1,4 @@
+import React from "react";
 import { ClaudeLogo } from "@/components/scalelist/ClaudeLogo";
 import { OpenAiLogo } from "@/components/scalelist/OpenAiLogo";
 
@@ -8,7 +9,7 @@ const CARDS: {
   h2: string;
   body: string;
   ctas: Cta[];
-  visual: JSX.Element;
+  visual: React.ReactNode;
 }[] = [
   {
     eyebrow: "FIND ANY LEADS",
@@ -184,7 +185,7 @@ function VisualVerifier() {
 function VisualIntegrationsOrbit() {
   // Official Claude and OpenAI marks are rendered as real logos.
   // Other tools are labelled nodes. Positions are placed around a ring.
-  const nodes: { label: string; top: string; left: string; content: JSX.Element }[] = [
+  const nodes: { label: string; top: string; left: string; content: React.ReactNode }[] = [
     { label: "Claude", top: "8%", left: "50%", content: <ClaudeLogo className="w-6 h-6" /> },
     { label: "Salesforce", top: "22%", left: "84%", content: <span className="text-[10px] font-semibold text-muted-foreground">Salesforce</span> },
     { label: "OpenAI", top: "50%", left: "92%", content: <OpenAiLogo className="w-6 h-6 text-foreground" /> },
