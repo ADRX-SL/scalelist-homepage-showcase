@@ -171,7 +171,7 @@ export function TabClaude() {
       <div className="bg-white p-4 sm:p-6 h-full flex flex-col overflow-hidden">
         <div className="flex items-start justify-between gap-3 mb-3 flex-wrap">
           <h3 className="text-sm font-semibold max-w-md leading-snug">
-            US B2B SaaS · Series A–B in last 6 months · hiring SDR/AE
+            US B2B SaaS hiring SDR/AE
           </h3>
           <span className="bg-green-50 text-green-700 border border-green-100 rounded-full px-3 py-1 text-xs font-medium whitespace-nowrap">
             12,400 leads
