@@ -13,34 +13,49 @@ type LeadRow = {
   last: string;
   title: string;
   company: string;
-  industry: string;
-  size: string;
+  domain: string;
   city: string;
-  country: string;
 };
 
 const ROWS: LeadRow[] = [
-  { first: "Adeel", last: "Raza", title: "Co-Founder & CEO", company: "Unlayer", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
-  { first: "Arvind", last: "Parthiban", title: "Co-Founder & CEO", company: "SuperOps", industry: "Software Development", size: "51", city: "San Francisco", country: "US" },
-  { first: "David", last: "Sneider", title: "Co-Founder", company: "Lit Protocol", industry: "Technology, Information…", size: "11", city: "San Francisco", country: "US" },
-  { first: "Geoffroy", last: "D'halluin", title: "CEO & co-founder", company: "Guideflow", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
-  { first: "Guillaume", last: "Marquis", title: "Co-Founder", company: "Pancake", industry: "Software Development", size: "2", city: "San Francisco", country: "US" },
-  { first: "Hoshang", last: "Mehta", title: "Co-Founder", company: "Pylar", industry: "Technology, Information…", size: "11", city: "Bengaluru", country: "IO" },
-  { first: "Jamie", last: "Sutherland", title: "Co-Founder & CEO", company: "Sonix Inc", industry: "Technology, Information…", size: "11", city: "San Francisco", country: "US" },
-  { first: "Roland", last: "Manyai", title: "CEO, Co-Founder", company: "Leopoly", industry: "Software Development", size: "11", city: "San Francisco", country: "US" },
+  { first: "Sarah", last: "Chen", title: "VP Sales", company: "OpenAI", domain: "openai.com", city: "San Francisco" },
+  { first: "Marcus", last: "Bell", title: "Head of Growth", company: "Stripe", domain: "stripe.com", city: "New York" },
+  { first: "Elena", last: "Vega", title: "CRO", company: "Salesforce", domain: "salesforce.com", city: "Austin" },
+  { first: "David", last: "Kim", title: "RevOps Lead", company: "HubSpot", domain: "hubspot.com", city: "Boston" },
+  { first: "Priya", last: "Raman", title: "Director of Demand Gen", company: "Slack", domain: "slack.com", city: "Seattle" },
+  { first: "Jordan", last: "Ellis", title: "Head of Partnerships", company: "Figma", domain: "figma.com", city: "San Francisco" },
+  { first: "Natalie", last: "Brooks", title: "VP Marketing", company: "Notion", domain: "notion.so", city: "New York" },
+  { first: "Tom", last: "Whitfield", title: "Chief Revenue Officer", company: "Datadog", domain: "datadoghq.com", city: "Boston" },
 ];
 
-const COLUMNS: { key: string; label: string; width: string }[] = [
-  { key: "profile", label: "LinkedIn Profile URL", width: "w-[190px]" },
-  { key: "first", label: "First Name", width: "w-[120px]" },
-  { key: "last", label: "Last Name", width: "w-[120px]" },
-  { key: "title", label: "Job Title", width: "w-[160px]" },
-  { key: "company", label: "Company", width: "w-[150px]" },
-  { key: "industry", label: "Industry", width: "w-[170px]" },
-  { key: "size", label: "Company Size", width: "w-[120px]" },
-  { key: "city", label: "City", width: "w-[130px]" },
-  { key: "country", label: "Country", width: "w-[90px]" },
-];
+function CompanyLogo({ domain, name }: { domain: string; name: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <span className="w-5 h-5 rounded-sm bg-primary/10 text-primary text-[10px] font-bold flex items-center justify-center shrink-0">
+        {name.charAt(0)}
+      </span>
+    );
+  }
+  return (
+    <img
+      src={`https://logo.clearbit.com/${domain}`}
+      alt={`${name} logo`}
+      loading="lazy"
+      onError={() => setFailed(true)}
+      className="w-5 h-5 rounded-sm object-contain shrink-0"
+    />
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-4 h-4 text-[#0A66C2]">
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+
 
 const QUERY =
   "Find B2B SaaS companies in the US that raised Series A or B in the last 6 months and are hiring SDRs or AEs.";
