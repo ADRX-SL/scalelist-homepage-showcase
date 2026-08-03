@@ -1,71 +1,79 @@
-import { CheckCircle2, Mail, Phone } from "lucide-react";
+import React from "react";
+import { ClaudeLogo } from "@/components/scalelist/ClaudeLogo";
+import { OpenAiLogo } from "@/components/scalelist/OpenAiLogo";
 
-const ROWS = [
+type Cta = { label: string; href: string; primary?: boolean };
+
+const CARDS: {
+  eyebrow: string;
+  h2: string;
+  body: string;
+  ctas: Cta[];
+  visual: React.ReactNode;
+}[] = [
   {
-    badge: { text: "Email & Mobile Data", cls: "bg-blue-50 text-blue-700 border-blue-100" },
-    h2: "Find up to 95% of your leads' emails and mobiles.",
-    body: "Scalelist verifies every professional email and mobile number before it reaches you. Up to 95% coverage worldwide, under 5% bounce rate, weekly-refreshed data. You pay only when we find a match.",
-    links: [
-      { label: "Email Finder", href: "https://scalelist.com/free-email-finder/" },
-      { label: "Mobile Number Finder", href: "https://scalelist.com/lead-mobile-finder/" },
-    ],
-    visual: <VisualLeadTable />,
+    eyebrow: "FIND ANY LEADS",
+    h2: "Describe your leads, get a ready-to-use list.",
+    body: "Tell Scalelist who you want to reach in plain English: role, industry, location, and company size. Get a verified, contact-ready lead list built directly in Scalelist, complete with work emails and mobile numbers. Free to explore, 1 credit per email, 20 per mobile, 0 for a miss.",
+    ctas: [{ label: "Learn more", href: "https://scalelist.com/leads-finder/", primary: true }],
+    visual: <VisualLeadFinder />,
   },
   {
-    badge: { text: "Works Everywhere", cls: "bg-purple-50 text-purple-700 border-purple-100" },
+    eyebrow: "ENRICH EXISTING LISTS",
     h2: "Enrich leads from LinkedIn, CSVs, CRMs, and any website.",
-    body: "Use the Scalelist Chrome Extension on any company page or LinkedIn profile. Upload a CSV or connect your CRM. Find contacts by domain. Build lists right inside Claude or ChatGPT. Every workflow, covered.",
-    links: [
-      { label: "Chrome Extension", href: "https://scalelist.com/extension/" },
-      { label: "Integrations", href: "https://scalelist.com/integrations/" },
-    ],
+    body: "Use the Scalelist Chrome Extension on any company page or LinkedIn profile. Upload a CSV, connect your CRM, or find contacts by domain. Every workflow is covered, with verified emails and mobile numbers added in a single pass.",
+    ctas: [{ label: "Learn more", href: "https://scalelist.com/extension/", primary: true }],
     visual: <VisualExtension />,
   },
   {
-    badge: { text: "Data Quality", cls: "bg-green-50 text-green-700 border-green-100" },
+    eyebrow: "VERIFY & CLEAN",
     h2: "Verified data that actually reaches the inbox.",
-    body: "Every email is triple-checked: syntax, MX records, and SMTP validation. Every mobile is carrier-verified. GDPR compliant. Weekly refreshes mean your CRM stays clean without lifting a finger.",
-    links: [
-      { label: "Email Verifier", href: "https://scalelist.com/email-verifier/" },
-      { label: "Monitoring", href: "https://scalelist.com/monitoring/" },
-    ],
+    body: "Every email is triple-checked for syntax, MX records, and SMTP. Every mobile is carrier-verified. Around 99% email verification accuracy on weekly-refreshed data keeps your CRM clean and your bounce rate under 5%.",
+    ctas: [{ label: "Learn more", href: "https://scalelist.com/email-verifier/", primary: true }],
     visual: <VisualVerifier />,
   },
   {
-    badge: { text: "Integrations", cls: "bg-orange-50 text-orange-700 border-orange-100" },
-    h2: "Integrate with any system, AI tool, or workflow.",
-    body: "Connect Scalelist to your CRM, sequencing tool, or AI agent in minutes. Salesforce, HubSpot, Instantly, lemlist, Clay, n8n, Zapier — and any tool via REST API. Push enriched contacts wherever they need to go.",
-    links: [
-      { label: "See all integrations", href: "https://scalelist.com/integrations/" },
-      { label: "API docs", href: "https://app.scalelist.com/docs" },
+    eyebrow: "INTEGRATIONS | API | EXPORT | MCP",
+    h2: "Connect Scalelist to every tool, AI agent, and workflow.",
+    body: "Connect Scalelist to Claude or ChatGPT through our MCP server. Integrate with HubSpot, Salesforce, or any other tool using our API, Zapier, or Make, or export your data to CSV or Excel.",
+    ctas: [
+      { label: "Learn more", href: "https://scalelist.com/integrations/" },
+      { label: "Get an API key", href: "https://app.scalelist.com/docs" },
+      { label: "Use Scalelist MCP in Claude", href: "https://scalelist.com/mcp-server/", primary: true },
     ],
-    visual: <VisualIntegrations />,
+    visual: <VisualIntegrationsOrbit />,
   },
 ];
 
 export function FeatureRows() {
   return (
     <section>
-      {ROWS.map((row, i) => {
+      {CARDS.map((card, i) => {
         const reverse = i % 2 === 1;
         return (
           <div key={i} className="py-20 md:py-28 border-b border-border last:border-b-0">
             <div className={`max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${reverse ? "lg:[&>*:first-child]:order-2" : ""}`}>
               <div>
-                <span className={`inline-block text-xs font-semibold uppercase tracking-widest border rounded-full px-3 py-1 ${row.badge.cls}`}>
-                  {row.badge.text}
-                </span>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mt-4 leading-tight">{row.h2}</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed mt-5">{row.body}</p>
-                <div className="flex gap-5 mt-6 flex-wrap">
-                  {row.links.map((l) => (
-                    <a key={l.label} href={l.href} className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1">
-                      {l.label} →
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-primary">{card.eyebrow}</div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mt-4 leading-tight">{card.h2}</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed mt-5">{card.body}</p>
+                <div className="flex gap-3 mt-7 flex-wrap">
+                  {card.ctas.map((c) => (
+                    <a
+                      key={c.label}
+                      href={c.href}
+                      className={
+                        c.primary
+                          ? "inline-flex items-center rounded-full bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold hover:opacity-90 transition"
+                          : "inline-flex items-center rounded-full border border-border bg-background px-5 py-2.5 text-sm font-semibold text-foreground hover:border-primary/40 hover:text-primary transition"
+                      }
+                    >
+                      {c.label}
                     </a>
                   ))}
                 </div>
               </div>
-              <div>{row.visual}</div>
+              <div>{card.visual}</div>
             </div>
           </div>
         );
@@ -74,26 +82,29 @@ export function FeatureRows() {
   );
 }
 
-function VisualLeadTable() {
+function VisualLeadFinder() {
   const rows = [
-    { name: "Sarah Chen", company: "Stripe", email: "sarah.chen@stripe.com", phone: "+1 (415) 555-0192", status: "Valid" },
-    { name: "Marcus Patel", company: "Notion", email: "m.patel@notion.so", phone: "+1 (415) 555-0144", status: "Valid" },
-    { name: "Elena Vega", company: "Linear", email: "elena@linear.app", phone: "+1 (628) 555-0178", status: "Risky" },
-    { name: "David Kim", company: "Vercel", email: "david.kim@vercel.com", phone: "+1 (650) 555-0102", status: "Valid" },
-    { name: "Priya Shah", company: "Figma", email: "priya@figma.com", phone: "+1 (415) 555-0166", status: "Valid" },
+    { name: "Sarah Chen", company: "Stripe", title: "VP Sales", email: "sarah.chen@stripe.com" },
+    { name: "Marcus Patel", company: "Notion", title: "Head of Growth", email: "m.patel@notion.so" },
+    { name: "Elena Vega", company: "Linear", title: "CMO", email: "elena@linear.app" },
+    { name: "David Kim", company: "Vercel", title: "RevOps Lead", email: "david.kim@vercel.com" },
   ];
   return (
     <div className="rounded-2xl border border-border bg-stone-50 shadow-sm p-4 overflow-hidden">
-      <div className="bg-white rounded-xl border border-border overflow-hidden">
+      <div className="bg-white rounded-xl border border-border shadow-sm px-4 py-3 flex items-center gap-2">
+        <span className="text-primary text-lg leading-none">&#10022;</span>
+        <span className="text-sm text-muted-foreground">Heads of Growth at US SaaS companies, 50 to 200 employees</span>
+      </div>
+      <div className="bg-white rounded-xl border border-border overflow-hidden mt-3">
         <div className="px-4 py-3 border-b border-border flex items-center justify-between">
-          <span className="text-sm font-semibold">Enriched leads</span>
-          <span className="bg-green-50 text-green-700 border border-green-100 rounded-full px-2 py-0.5 text-[10px] font-semibold">92% verified</span>
+          <span className="text-sm font-semibold">Your list</span>
+          <span className="bg-green-50 text-green-700 border border-green-100 rounded-full px-2 py-0.5 text-[10px] font-semibold">1,240 matches</span>
         </div>
         <table className="w-full text-xs">
           <thead className="bg-gray-50">
             <tr className="text-left text-[10px] uppercase tracking-wider text-muted-foreground">
               <th className="px-3 py-2">Name</th><th className="px-3 py-2">Company</th>
-              <th className="px-3 py-2">Email</th><th className="px-3 py-2">Phone</th><th className="px-3 py-2">Status</th>
+              <th className="px-3 py-2">Title</th><th className="px-3 py-2">Email</th>
             </tr>
           </thead>
           <tbody>
@@ -101,13 +112,8 @@ function VisualLeadTable() {
               <tr key={i} className="border-t border-border">
                 <td className="px-3 py-2 font-medium">{r.name}</td>
                 <td className="px-3 py-2 text-muted-foreground">{r.company}</td>
+                <td className="px-3 py-2 text-muted-foreground">{r.title}</td>
                 <td className="px-3 py-2 text-muted-foreground">{r.email}</td>
-                <td className="px-3 py-2 text-muted-foreground">{r.phone}</td>
-                <td className="px-3 py-2">
-                  <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-medium ${r.status === "Valid" ? "bg-green-50 text-green-700 border border-green-100" : "bg-orange-50 text-orange-700 border border-orange-100"}`}>
-                    {r.status === "Valid" && <CheckCircle2 className="w-2.5 h-2.5" />} {r.status}
-                  </span>
-                </td>
               </tr>
             ))}
           </tbody>
@@ -176,17 +182,39 @@ function VisualVerifier() {
   );
 }
 
-function VisualIntegrations() {
-  const tools = ["HubSpot", "Salesforce", "lemlist", "Instantly", "Clay", "n8n", "Zapier", "Claude", "ChatGPT"];
+function VisualIntegrationsOrbit() {
+  // Official Claude and OpenAI marks are rendered as real logos.
+  // Other tools are labelled nodes. Positions are placed around a ring.
+  const nodes: { label: string; top: string; left: string; content: React.ReactNode }[] = [
+    { label: "Claude", top: "8%", left: "50%", content: <ClaudeLogo className="w-6 h-6" /> },
+    { label: "Salesforce", top: "22%", left: "84%", content: <span className="text-[10px] font-semibold text-muted-foreground">Salesforce</span> },
+    { label: "OpenAI", top: "50%", left: "92%", content: <OpenAiLogo className="w-6 h-6 text-foreground" /> },
+    { label: "Zapier", top: "78%", left: "84%", content: <span className="text-[11px] font-semibold text-muted-foreground">Zapier</span> },
+    { label: "HubSpot", top: "92%", left: "50%", content: <span className="text-[11px] font-semibold text-muted-foreground">HubSpot</span> },
+    { label: "Make", top: "78%", left: "16%", content: <span className="text-[11px] font-semibold text-muted-foreground">Make</span> },
+    { label: "CSV", top: "50%", left: "8%", content: <span className="text-[11px] font-semibold text-muted-foreground">CSV</span> },
+    { label: "Clay", top: "22%", left: "16%", content: <span className="text-[11px] font-semibold text-muted-foreground">Clay</span> },
+  ];
   return (
-    <div className="rounded-2xl border border-border bg-stone-50 p-4">
-      <div className="grid grid-cols-3 gap-3">
-        {tools.map((t) => (
-          <div key={t} className="bg-white rounded-xl border border-border h-20 flex items-center justify-center text-sm font-semibold text-muted-foreground grayscale">
-            {t}
+    <div className="rounded-2xl border border-border bg-stone-50 shadow-sm p-4">
+      <div className="relative mx-auto aspect-square w-full max-w-[420px]">
+        <div className="absolute inset-[10%] rounded-full border border-dashed border-border" />
+        <div className="absolute inset-[26%] rounded-full border border-dashed border-border" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-md">
+          <span className="text-2xl font-extrabold">S</span>
+        </div>
+        {nodes.map((n) => (
+          <div
+            key={n.label}
+            aria-label={n.label}
+            className="absolute -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white border border-border shadow-sm flex items-center justify-center"
+            style={{ top: n.top, left: n.left }}
+          >
+            {n.content}
           </div>
         ))}
       </div>
+      <p className="mt-2 text-center text-xs text-muted-foreground">Claude, ChatGPT, HubSpot, Salesforce, Zapier, Make, Clay, CSV and more</p>
     </div>
   );
 }
