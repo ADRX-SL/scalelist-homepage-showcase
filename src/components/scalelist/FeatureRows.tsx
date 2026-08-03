@@ -99,6 +99,7 @@ const SECTIONS: {
     ctas: [
       { label: "Learn more", href: "https://scalelist.com/integrations/" },
       { label: "Get an API key", href: "https://app.scalelist.com/docs" },
+      { label: "Get access to Scalelist MCP Server", href: "https://scalelist.com/mcp-server/" },
     ],
     visual: <VisualOrbit />,
   },
