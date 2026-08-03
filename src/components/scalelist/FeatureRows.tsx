@@ -56,7 +56,7 @@ const SECTIONS: {
     color: "blue",
     h2: "Describe your ideal clients, get a ready-to-use lead list",
     body: "Describe your perfect leads, and our AI Leads Finder will find them anywhere in the world, in one click.",
-    ctas: [{ label: "Learn more", href: "https://scalelist.com/leads-finder/" }],
+    ctas: [{ label: "Learn more about our AI Leads Finder", href: "https://scalelist.com/leads-finder/" }],
     visual: <VisualLeadList />,
   },
   {
