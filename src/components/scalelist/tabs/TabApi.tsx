@@ -36,15 +36,14 @@ export function TabApi() {
 
       <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mt-6 max-w-4xl mx-auto w-full">
         {DESTINATIONS.map((d, i) => {
-          const Icon = d.icon;
           const synced = i < done;
           return (
             <div
               key={d.name}
               className="flex items-start gap-3 rounded-2xl border border-border bg-white p-4 shadow-sm"
             >
-              <span className={`shrink-0 w-10 h-10 rounded-xl border flex items-center justify-center ${d.tone}`}>
-                <Icon className="w-5 h-5" />
+              <span className="shrink-0 w-10 h-10 rounded-xl border border-border bg-white flex items-center justify-center overflow-hidden">
+                <img src={d.logo} alt={`${d.name} logo`} className="w-full h-full object-contain p-1" />
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
