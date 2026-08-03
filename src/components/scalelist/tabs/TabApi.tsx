@@ -1,35 +1,15 @@
 import { useEffect, useState } from "react";
-import { CheckCircle2, Code2, Loader2, Mail, Phone, Users } from "lucide-react";
+import { CheckCircle2, Code2, Loader2 } from "lucide-react";
+import instantlyLogo from "@/assets/logos/instantly.png";
+import lemlistLogo from "@/assets/logos/lemlist.png";
+import aircallLogo from "@/assets/logos/aircall.png";
+import hubspotLogo from "@/assets/logos/hubspot.png";
 
 const DESTINATIONS = [
-  {
-    name: "Instantly",
-    kind: "Email sequencer",
-    detail: "12,400 leads pushed to “US SaaS · Series A–B” campaign",
-    icon: Mail,
-    tone: "bg-blue-50 text-blue-700 border-blue-100",
-  },
-  {
-    name: "lemlist",
-    kind: "Email sequencer",
-    detail: "3 sequences ready, 1 verified email per lead",
-    icon: Mail,
-    tone: "bg-blue-50 text-blue-700 border-blue-100",
-  },
-  {
-    name: "Aircall",
-    kind: "Cold-calling dialer",
-    detail: "10,800 direct mobiles queued for the SDR dial list",
-    icon: Phone,
-    tone: "bg-purple-50 text-purple-700 border-purple-100",
-  },
-  {
-    name: "HubSpot",
-    kind: "CRM",
-    detail: "Contacts and companies deduped, 0 duplicates created",
-    icon: Users,
-    tone: "bg-orange-50 text-orange-700 border-orange-100",
-  },
+  { name: "Instantly", kind: "Email sequencer", detail: "12,400 leads pushed to “US SaaS · Series A–B” campaign", logo: instantlyLogo },
+  { name: "lemlist", kind: "Email sequencer", detail: "3 sequences ready, 1 verified email per lead", logo: lemlistLogo },
+  { name: "Aircall", kind: "Cold-calling dialer", detail: "10,800 direct mobiles queued for the SDR dial list", logo: aircallLogo },
+  { name: "HubSpot", kind: "CRM", detail: "Contacts and companies deduped, 0 duplicates created", logo: hubspotLogo },
 ];
 
 export function TabApi() {
