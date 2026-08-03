@@ -75,7 +75,7 @@ export function HeroSection() {
 
         <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           Describe your perfect lead, then have our AI Leads Finder search for it and enrich your list with verified
-          emails and mobile numbers, anywhere in the world, in one click.
+          emails and mobile numbers in one click.
         </p>
 
         <PromptWidget />
