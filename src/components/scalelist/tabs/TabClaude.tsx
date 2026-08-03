@@ -165,38 +165,49 @@ export function TabClaude() {
 
         <div className="flex-1 overflow-y-auto min-h-0">
           <div className="overflow-x-auto rounded-xl border border-border">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm table-fixed min-w-[1150px]">
+              <colgroup>
+                {COLUMNS.map((c) => (
+                  <col key={c.key} className={c.width} />
+                ))}
+              </colgroup>
               <thead className="bg-gray-50">
                 <tr className="text-left">
-                  {["Fit", "Company", "Category", "Funding", "Headcount", "Buying signal"].map((h) => (
+                  {COLUMNS.map((c) => (
                     <th
-                      key={h}
-                      className="text-[10px] font-semibold uppercase text-muted-foreground tracking-wider px-3 py-2.5 whitespace-nowrap"
+                      key={c.key}
+                      className="text-[11px] font-medium text-muted-foreground px-3 py-2.5 whitespace-nowrap border-r border-border last:border-r-0"
                     >
-                      {h}
+                      {c.label}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {ROWS.slice(0, visibleRows).map((r, i) => (
-                  <tr key={r.company} className={i % 2 === 0 ? "bg-white" : "bg-gray-50/40"}>
-                    <td className="px-3 py-3 border-t border-border">
-                      <span className="inline-flex items-center rounded-full bg-primary/10 text-primary px-2 py-0.5 text-xs font-semibold">
-                        {r.fit}
-                      </span>
+                {ROWS.map((r, i) => (
+                  <tr
+                    key={r.first + r.last}
+                    className="bg-white transition-opacity duration-300"
+                    style={{ opacity: i < visibleRows ? 1 : 0 }}
+                  >
+                    <td className="px-3 py-3 border-t border-border truncate text-primary font-medium">
+                      {r.first} {r.last}
                     </td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap font-medium">{r.company}</td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap text-muted-foreground">{r.cat}</td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap">{r.funding}</td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap">{r.head}</td>
-                    <td className="px-3 py-3 border-t border-border whitespace-nowrap text-muted-foreground">{r.signal}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.first}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.last}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.title}</td>
+                    <td className="px-3 py-3 border-t border-border truncate text-primary font-medium">{r.company}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.industry}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.size}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.city}</td>
+                    <td className="px-3 py-3 border-t border-border truncate">{r.country}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
+
       </div>
     </div>
   );
